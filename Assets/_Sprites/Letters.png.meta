@@ -1,11 +1,28 @@
 fileFormatVersion: 2
 guid: a3dfadce2ec324208b9305ffd5119ba8
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Letters
+    21300002: Letters_0
+    21300004: Letters_1
+    21300006: Letters_2
+    21300008: Letters_3
+    21300010: Letters_4
+    21300012: Letters_5
+    21300014: Letters_6
+    21300016: Letters_7
+    21300018: Letters_8
+    21300020: Letters_9
+    21300022: Letters_10
+    21300024: Letters_11
+    21300026: Letters_12
+    21300028: Letters_13
+    21300030: Letters_14
+    21300032: Letters_15
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -24,23 +41,27 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 1024
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 1
     mipBias: -1
     wrapMode: 1
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 0
-  textureType: 0
-  buildTargetSettings: []
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -3
+    compressionQuality: 50
   spriteSheet:
     sprites:
     - name: Letters_0
