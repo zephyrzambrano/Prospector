@@ -31,12 +31,30 @@ public class Deck : MonoBehaviour {
 	public List<Decorator>				decorators;
 	public List<CardDefinition>			cardDefs;
 	public Transform					deckAnchor;
-	public Dictionary<string, Sprite>	dictSuites;
+	public Dictionary<string, Sprite>	dictSuits;
 
 
 	// called by Prospector when it is ready
 	public void InitDeck(string deckXMLText) {
+		// from page 576
+		if( GameObject.Find("_Deck") == null) {
+			GameObject anchorGO = new GameObject("_Deck");
+			deckAnchor = anchorGO.transform;
+		}
+		
+		// init the Dictionary of suits
+		dictSuits = new Dictionary<string, Sprite>() {
+			{"C", suitClub},
+			{"D", suitDiamond},
+			{"H", suitHeart},
+			{"S", suitSpade}
+		};
+		
+		
+		
+		// -------- end from page 576
 		ReadDeck (deckXMLText);
+		MakeCards();
 	}
 
 
@@ -107,5 +125,20 @@ public class Deck : MonoBehaviour {
 			cardDefs.Add (cDef);
 		} // for i < xCardDefs.Count
 	} // ReadDeck
+	
+	public CardDefinition GetCardDefinitionByRank(int rnk) {
+		foreach(CardDefinition cd in cardDefs) {
+			if (cd.rank == rnk) {
+					return(cd);
+			}
+		} // foreach
+		return (null);
+	}//GetCardDefinitionByRank
+	
+	
+	public void MakeCards() {
+		// stub Add the code from page 577 here
+		
+	} // makeCards
 	
 } // Deck class
