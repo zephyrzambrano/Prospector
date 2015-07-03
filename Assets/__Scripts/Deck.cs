@@ -138,6 +138,72 @@ public class Deck : MonoBehaviour {
 	
 	public void MakeCards() {
 		// stub Add the code from page 577 here
+		cardNames = new List<string>();
+		string[] letters = new string[] {"C","D","H","S"};
+		foreach (string s in letters) {
+			for (int i =0; i<13; i++) {
+				cardNames.Add(s+(i+1));
+			}
+		}
+		
+		// list of all Cards
+		cards = new List<Card>();
+		
+		// temp variables
+		Sprite tS = null;
+		GameObject tGO = null;
+		SpriteRenderer tSR = null;  // so tempted to make a D&D ref here...
+		
+		for (int i=0; i<cardNames.Count; i++) {
+			GameObject cgo = Instantiate(prefabCard) as GameObject;
+			cgo.transform.parent = deckAnchor;
+			Card card = cgo.GetComponent<Card>();
+			
+			cgo.transform.localPosition = new Vector3(i%13*3, i/13*4, 0);
+			
+			card.name = cardNames[i];
+			card.suit = card.name[0].ToString();
+			card.rank = int.Parse (card.name.Substring (1));
+			
+			if (card.suit =="D" || card.suit == "H") {
+				card.colS = "Red";
+				card.color = Color.red;
+			}
+			
+			card.def = GetCardDefinitionByRank(card.rank);
+			
+			foreach (Decorator deco in decorators) {
+				tGO = Instantiate(prefabSprite) as GameObject;
+				tSR = tGO.GetComponent<SpriteRenderer>();
+				if (deco.type == "suit") {
+					tSR.sprite = dictSuits[card.suit];
+				} else { // it is a rank
+					tS = rankSprites[card.rank];
+					tSR.sprite = tS;
+					tSR.color = card.color;
+				}
+				
+				tSR.sortingOrder = 1;                     // make it render above card
+				tGO.transform.parent = cgo.transform;     // make deco a child of card GO
+				tGO.transform.localPosition = deco.loc;   // set the deco's local position
+				
+				if (deco.flip) {
+					tGO.transform.rotation = Quaternion.Euler(0,0,180);
+				}
+				
+				if (deco.scale != 1) {
+					tGO.transform.localScale = Vector3.one * deco.scale;
+				}
+				
+				tGO.name = deco.type;
+				
+				card.decoGOs.Add (tGO);
+			} // foreach Deco
+			
+			cards.Add (card);
+			
+		} // for all the Cardnames
+		
 		
 	} // makeCards
 	
