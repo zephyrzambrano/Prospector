@@ -172,6 +172,7 @@ public class Deck : MonoBehaviour {
 			
 			card.def = GetCardDefinitionByRank(card.rank);
 			
+			// Add Decorators
 			foreach (Decorator deco in decorators) {
 				tGO = Instantiate(prefabSprite) as GameObject;
 				tSR = tGO.GetComponent<SpriteRenderer>();
@@ -200,11 +201,53 @@ public class Deck : MonoBehaviour {
 				card.decoGOs.Add (tGO);
 			} // foreach Deco
 			
-			cards.Add (card);
 			
-		} // for all the Cardnames
-		
-		
+			//Add the pips
+			foreach(Decorator pip in card.def.pips) {
+				tGO = Instantiate(prefabSprite) as GameObject;
+				tGO.transform.parent = cgo.transform; 
+				tGO.transform.localPosition = pip.loc;
+				
+				if (pip.flip) {
+					tGO.transform.rotation = Quaternion.Euler(0,0,180);
+				}
+				
+				if (pip.scale != 1) {
+					tGO.transform.localScale = Vector3.one * pip.scale;
+				}
+				
+				tGO.name = "pip";
+				tSR = tGO.GetComponent<SpriteRenderer>();
+				tSR.sprite = dictSuits[card.suit];
+				tSR.sortingOrder = 1;
+				card.pipGOs.Add (tGO);
+			}
+			
+			//Handle face cards
+			if (card.def.face != "") {
+				tGO = Instantiate(prefabSprite) as GameObject;
+				tSR = tGO.GetComponent<SpriteRenderer>();
+				
+				tS = GetFace(card.def.face+card.suit);
+				tSR.sprite = tS;
+				tSR.sortingOrder = 1;
+				tGO.transform.parent=card.transform;
+				tGO.transform.localPosition = Vector3.zero;  // slap it smack dab in the middle
+				tGO.name = "face";
+			}
+			
+			cards.Add (card);
+		} // for all the Cardnames	
 	} // makeCards
+	
+	//Find the proper face card
+	public Sprite GetFace(string faceS) {
+		foreach (Sprite tS in faceSprites) {
+			if (tS.name == faceS) {
+				return (tS);
+			}
+		}//foreach	
+		return (null);  // couldn't find the sprite (should never reach this line)
+	 }// getFace 
 	
 } // Deck class
