@@ -252,7 +252,7 @@ public class Deck : MonoBehaviour {
 		return (null);  // couldn't find the sprite (should never reach this line)
 	 }// getFace 
 
-	 static public Shuffle(ref List<Card> oCards)
+	 static public void Shuffle(ref List<Card> oCards)
 	 {
 	 	List<Card> tCards = new List<Card>();
 
