@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -6,8 +8,13 @@ using System.Collections.Generic;
 public class Prospector : MonoBehaviour {
 
 	static public Prospector 	S;
-	public Deck					deck;
+
+	[Header("Set in Inspector")]
 	public TextAsset			deckXML;
+
+
+	[Header("Set Dynamically")]
+	public Deck					deck;
 
 	void Awake(){
 		S = this;
