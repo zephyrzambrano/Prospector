@@ -249,5 +249,28 @@ public class Deck : MonoBehaviour {
 		}//foreach	
 		return (null);  // couldn't find the sprite (should never reach this line)
 	 }// getFace 
-	
+
+	 static public Shuffle(ref List<Card> oCards)
+	 {
+	 	List<Card> tCards = new List<Card>();
+
+	 	int ndx;   // which card to move
+
+	 	while (oCards.Count > 0) 
+	 	{
+	 		// find a random card, add it to shuffled list and remove from original deck
+	 		ndx = Random.Range(0,oCards.Count);
+	 		tCards.Add(oCards[ndx]);
+	 		oCards.RemoveAt(ndx);
+	 	}
+
+	 	oCards = tCards;
+
+	 	//because oCards is a ref parameter, the changes made are propogated back
+	 	//for ref paramters changes made in the function persist.
+
+
+	 }
+
+
 } // Deck class
