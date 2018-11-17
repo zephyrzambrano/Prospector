@@ -92,7 +92,7 @@ public class ScoreManager : MonoBehaviour {
         }
     }
 
-    static public int CHAIN { get { return S.chain} }
-    static public int SCORE { get { return S.score } }
-    static public int SCORE_RUN { get { return S.scoreRun} }
+    static public int CHAIN { get { return S.chain; } }
+    static public int SCORE { get { return S.score; } }
+    static public int SCORE_RUN { get { return S.scoreRun; } }
 }

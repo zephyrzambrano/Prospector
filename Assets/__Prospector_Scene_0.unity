@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xmlr:
     xmlText: 
-  multiplier: {x: 0, y: 0}
+  multiplier: {x: 1.25, y: 1.5}
   slotDefs: []
   drawPile:
     x: 0
